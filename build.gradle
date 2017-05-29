@@ -1,0 +1,51 @@
+
+buildscript {
+	ext {
+		springBootVersion = '1.5.2.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    	//classpath('com.github.ben-manes:gradle-jsonschema2pojo-plugin:0.1')
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse-wtp'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'war'
+
+war {
+	baseName = 'GoogleSheetsPOC'
+	version = '1.0'
+}
+
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+}
+
+
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter-aop')
+	compile('org.springframework.boot:spring-boot-starter-web')
+	compile('org.apache.commons:commons-lang3:3.0')
+	
+	runtime('org.webjars:angularjs:1.4.9')
+	runtime('org.webjars:bootstrap:3.3.6')
+	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+	testCompile('org.springframework.restdocs:spring-restdocs-mockmvc')
+	testCompile('org.hibernate:hibernate-testing:5.1.0.Final')
+	
+	//compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.3'
+	compile group: 'com.google.apis', name: 'google-api-services-sheets', version: 'v4-rev475-1.20.0'
+	compile('com.google.api-client:google-api-client:1.22.0')
+    compile('com.google.oauth-client:google-oauth-client-jetty:1.22.0')
+    //compile('com.fasterxml.jackson.core:jackson-databind:2.1.4')
+    
+}

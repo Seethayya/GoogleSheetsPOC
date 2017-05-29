@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<style>
+</style>
+<body>
+
+<div ng-app="myApp" ng-controller="googleSheetController"> 
+<div ng-init="onload()"></div>
+<h1 class="Heading1">Google Sheets</h1>
+ <div class="customerName">{{email}}</div>
+<div style="font-size: 38px;text-align: center;    padding: 111px;">
+	<div  ng-show="emailDiv" >
+		Email Id:<input type="text"ng-model="email"><br/><br/>
+		<button ng-click="findCustomer()">Continue</button>
+	</div>
+	<br/><br/>
+	<!-- <div>
+		 Code:<input type="text" ng-model="code"><br/><br/>
+		<button ng-click="generateToken()">GenerateToken</button>	
+	</div> -->
+	
+	<div ng-show="spreadSheetDiv" >
+		 Spread Sheet Id:<input type="text" ng-model="spreadSheetId"><br/><br/>
+		<button ng-click="getSpreadSheets()">FetchData</button>	
+		
+		<div ng-show="sheetGgrid">
+		<div  ng-repeat="sheet in sheets">
+			<div> Sheet {{$index+1}}:{{sheet.name}}</div>
+			<table class="ticketTable">
+			     <tr ng-repeat="row in sheet.rows">
+			         <td ng-repeat="column in row.columns" ng-class="bgclr">
+			         	<div>{{column === "null" ? "  " : column}}</div>
+			         </td>
+			     </tr>
+		    </table>
+		  	<br/>
+		 </div> 	
+		</div>
+	</div>
+
+</div>
+	<div style="font-size: 30px;">Status:{{responseStatus}}</div>
+</div>
+<script src=webjars/jquery/1.11.1/jquery.js"></script>
+<script src="webjars/jquery/1.11.1/jquery.min.js"></script>
+<script src="webjars/angularjs/1.4.9/angular.js"></script>
+<script src="webjars/angularjs/1.4.9/angular-resource.js"></script>
+<script src="webjars/angularjs/1.4.9/angular-route.js"></script>
+<script src="js/app.js"></script>
+<script src="js/controllers.js"></script>
+<link rel="stylesheet" href="webjars/bootstrap/3.3.6/css/bootstrap.css">
+<link rel="stylesheet" href="css/app.css">
+
+</body>
+</html>
